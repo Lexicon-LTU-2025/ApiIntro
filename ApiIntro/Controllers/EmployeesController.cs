@@ -25,7 +25,8 @@ namespace ApiIntro.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployee()
         {
-            return await _context.Employees.ToListAsync();
+            var res = _context.Employees.Where(e => e.Salary > 50000);
+            return Ok(await res.ToListAsync());
         }
 
         // GET: api/Employees/5
