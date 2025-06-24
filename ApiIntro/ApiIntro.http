@@ -1,6 +1,6 @@
 @ApiIntro_HostAddress = http://localhost:5236
 
-GET {{ApiIntro_HostAddress}}/weatherforecast/
+GET {{ApiIntro_HostAddress}}/weather/
 Accept: application/json
 
 ###
