@@ -18,13 +18,15 @@ public class Employee
 }
 public class EmployeeForCreationDto
 {
-   
-
     [Required]
     [StringLength(15, MinimumLength = 2)]
-    public  string Name { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
 
     [Range(0, 200000)]
+    [Required]
     public int Salary { get; set; }
+   
+    [Required]
+    public string Department { get; set; } = string.Empty;
 
 }

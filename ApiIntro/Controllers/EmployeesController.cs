@@ -25,8 +25,10 @@ namespace ApiIntro.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployee()
         {
-            var res = _context.Employees.Where(e => e.Salary > 50000);
-            return Ok(await res.ToListAsync());
+            var res = await _context.Employees.Where(e => e.Salary > 50000).ToListAsync();
+
+            //
+            return Ok(res);
         }
 
         // GET: api/Employees/5
@@ -77,8 +79,15 @@ namespace ApiIntro.Controllers
         // POST: api/Employees
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
+        public async Task<ActionResult<Employee>> PostEmployee(EmployeeForCreationDto employeeDto)
         {
+            var employee = new Employee
+            {
+                Name = employeeDto.Name,
+                Salary = employeeDto.Salary,
+                Department = employeeDto.Department
+            };
+
             _context.Employees.Add(employee);
             await _context.SaveChangesAsync();
 
